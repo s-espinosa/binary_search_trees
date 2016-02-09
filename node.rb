@@ -2,7 +2,7 @@ class Node
   attr_reader :key, :value
   attr_accessor :left_child, :right_child
 
-  def initialize(key, value, parent = nil)
+  def initialize(key, value)
     @key = key
     @value = value
     @left_child = nil
