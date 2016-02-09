@@ -14,7 +14,6 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_it_verifies_and_rejects_the_presence_of_a_score
-    skip
     tree = BinarySearchTree.new
 
     assert_equal 0, tree.insert(61, "Bill & Ted's Excellent Adventure")

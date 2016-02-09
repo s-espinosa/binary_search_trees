@@ -7,40 +7,58 @@ class BinarySearchTree
 
 
   ##REFACTOR THIS##
-  def insert(key, value, potential_parent_node = @head, depth = 0)
+  def insert(key, value, potential_parent_node = @head)
     if @head == nil
       @head = Node.new(key, value)
+      0
+    else
+      insertion_point, depth = find_insertion_point(key, value, potential_parent_node)
+      add_leaf(key, value, insertion_point)
       depth
-    elsif key < potential_parent_node.key
-      if potential_parent_node.left_child
+    end
+  end
+
+  def find_insertion_point(key, value, potential_parent, depth = 0)
+    if potential_parent.key > key
+      if potential_parent.left_child == nil
         depth += 1
-        self.insert(key, value, potential_parent_node.left_child, depth)
+        [potential_parent, depth]
       else
-        potential_parent_node.left_child = Node.new(key, value)
         depth += 1
-        depth
+        find_insertion_point(key, value, potential_parent.left_child, depth)
       end
-    elsif key > potential_parent_node.key
-      if potential_parent_node.right_child
+    else
+      if potential_parent.right_child == nil
         depth += 1
-        self.insert(key, value, potential_parent_node.right_child, depth)
+        [potential_parent, depth]
       else
-        potential_parent_node.right_child = Node.new(key, value)
         depth += 1
-        depth
+        find_insertion_point(key, value, potential_parent.right_child, depth)
       end
     end
   end
 
-  # def include?(search_value, node = @head)
-  #   if node.key == search_value
-  #     true
-  #   elsif node.key > search_value
-  #
-  #   elsif node.key < search_value
-  #
-  #
-  # end
+  def add_leaf(key, value, parent)
+    if parent == nil
+      Node.new(key, value)
+    elsif parent.key > key
+      parent.left_child = Node.new(key, value)
+    else
+      parent.right_child = Node.new(key, value)
+    end
+  end
+
+  def include?(search_key, node = @head)
+    if node == nil
+      false
+    elsif node.key == search_key
+      true
+    elsif node.key > search_key
+      include?(search_key, node.left_child)
+    else node.key < search_key
+      include?(search_key, node.right_child)
+    end
+  end
 
   # def depth_of?
   #
