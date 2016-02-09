@@ -1,11 +1,10 @@
 require 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../bin/bst.rb'
+require_relative 'binary_search_tree.rb'
 
-class BSTTest < Minitest::Test
+class BinarySearchTreeTest < Minitest::Test
   def test_it_inserts_a_new_node_when_passed_in_data
-    skip
     tree = BinarySearchTree.new
 
     assert_equal 0, tree.insert(61, "Bill & Ted's Excellent Adventure")
