@@ -62,9 +62,17 @@ class BinarySearchTree
     {current_node.value => current_node.key}
   end
 
-  # def sort
-  #
-  # end
+  def sort
+    sort_array = []
+    sort_recursively(@head, sort_array)
+    sort_array
+  end
+
+  def sort_recursively(node, sort_array)
+    sort_recursively(node.left_child, sort_array) if node.left_child
+    sort_array.push({node.value => node.key})
+    sort_recursively(node.right_child, sort_array) if node.right_child
+  end
 
   def load(from_file)
     files_added = 0

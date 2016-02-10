@@ -64,7 +64,6 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_returns_array_of_all_movies_and_scores_sorted_in_ascending_order
-    skip
     tree = BinarySearchTree.new
 
     assert_equal 0, tree.insert(61, "Bill & Ted's Excellent Adventure")
