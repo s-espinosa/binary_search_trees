@@ -1,4 +1,5 @@
 require_relative 'node'
+require 'pry'
 
 class BinarySearchTree
   attr_reader :head
@@ -73,11 +74,15 @@ class BinarySearchTree
 
   def load(from_file)
     files_added = 0
-    File.readlines(from_file).each do |line|
+    File.readlines(from_file).count do |line|
       line = line.chomp
       line_array = line.split(", ")
-      insert(line_array[0].to_i, line_array[1])
-      files_added += 1
+      if include?(line_array[0].to_i)
+        #skip
+      else
+        insert(line_array[0].to_i, line_array[1])
+        files_added += 1
+      end
     end
     files_added
   end

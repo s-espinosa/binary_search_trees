@@ -101,9 +101,10 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 1, tree.insert(92, "Sharknado 3")
     assert_equal 2, tree.insert(50, "Hannibal Buress: Animal Furnace")
 
-    tree.load('bin/movies.txt')
+    expected = 96
+    actual = tree.load('bin/movies.txt')
 
-    assert_equal 99, tree.load('bin/movies.txt')
+    assert_equal expected, actual
   end
 
   def test_reports_on_health_of_tree
@@ -124,10 +125,13 @@ class BinarySearchTreeTest < Minitest::Test
 
   def test_count_children
     tree = BinarySearchTree.new
-    tree.load('bin/movies.txt')
-    assert_equal 99, tree.load('bin/movies.txt')
+    actual = tree.load('bin/movies.txt')
 
-    assert_equal 99, tree.count_children_and_parent(tree.head, 0)
+    expected = 100
+    assert_equal expected, actual
+
+    actual = tree.count_children_and_parent(tree.head, 0)
+    assert_equal 100, actual
   end
 
   def test_counts_the_nodes_at_a_given_depth
