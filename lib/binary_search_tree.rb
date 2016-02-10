@@ -110,4 +110,12 @@ class BinarySearchTree
     collection = collect_nodes_at_depth(depth, collection, node.right_child) if node.right_child
     collection
   end
+
+  def leaves(count = 0, node = @head)
+    count = leaves(count, node.left_child) if node.left_child
+    count += 1 if node.left_child.nil? && node.right_child.nil?
+    count = leaves(count, node.right_child) if node.right_child
+    count
+  end
+
 end

@@ -153,4 +153,23 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 2, tree.collect_nodes_at_depth(3).length
     assert_equal 1, tree.collect_nodes_at_depth(4).length
   end
+
+  def test_counts_the_nodes_at_a_given_depth
+    tree = BinarySearchTree.new
+
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
+    tree.insert(99, "Teen Wolf")
+    tree.insert(100, "Labyrinth")
+
+    actual = tree.leaves
+    expected = 3
+
+    assert_equal expected, actual
+  end
 end
