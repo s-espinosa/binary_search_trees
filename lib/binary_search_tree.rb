@@ -90,43 +90,15 @@ class BinarySearchTree
     {current_node.value => current_node.key}
   end
 
-  def sort
-    sorted_list = add_next_leftmost_node(Array.new, @head)
-  end
-
-  def add_next_leftmost_node(partially_sorted_array, current_node)
-    if partially_sorted_array == []
-      min_node_values = min
-      partially_sorted_array = [min_node_values]
-      add_next_leftmost_node(partially_sorted_array, @head)
-    elsif current_node.left_child
-      if {current_node.left_child.value => current_node.left_child.key} == partially_sorted_array.last
-        if current_node.left_child.right_child
-          add_next_leftmost_node(partially_sorted_array, current_node.left_child.right_child)
-        else
-          hash_to_add = {current_node.value => current_node.key}
-          partially_sorted_array.push(hash_to_add)
-          add_next_leftmost_node(partially_sorted_array, current_node.right_child)
-        end
-      else
-        add_next_leftmost_node(partially_sorted_array, current_node.left_child)
-      end
-    else
-      if current_node.right_child
-        add_next_leftmost_node(partially_sorted_array, current_node.right_child)
-      else
-        hash_to_add = {current_node.value => current_node.key}
-        partially_sorted_array.push(hash_to_add)
-      end
-    end
-
-    partially_sorted_array
-  end
-
-
-  # def load
+  # def sort
   #
   # end
+
+
+  def load(file)
+
+
+  end
   #
   # def health(level)
   #   # potential_nodes_at_level = 2 ** level
