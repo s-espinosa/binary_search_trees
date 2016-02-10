@@ -154,7 +154,7 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 1, tree.collect_nodes_at_depth(4).length
   end
 
-  def test_counts_the_nodes_at_a_given_depth
+  def test_counts_the_leaves
     tree = BinarySearchTree.new
 
     tree.insert(98, "Animals United")
