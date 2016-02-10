@@ -18,16 +18,6 @@ class BinarySearchTree
     new_node.depth
   end
 
-  def add_leaf(key, value, parent)
-    if parent == nil
-      Node.new(key, value)
-    elsif parent.key > key
-      parent.left_child = Node.new(key, value)
-    else
-      parent.right_child = Node.new(key, value)
-    end
-  end
-
   def include?(search_key, node = @head)
     if node == nil
       false
