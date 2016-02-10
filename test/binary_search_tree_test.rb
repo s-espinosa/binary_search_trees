@@ -79,6 +79,20 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal expected, tree.sort
   end
 
+  def test_ignores_scores_already_included
+    tree = BinarySearchTree.new
+
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(61, "Bill & Ted's Bogus Journey")
+
+    expected = {"Bill & Ted's Excellent Adventure"=>61}
+    not_expected = {"Bill & Ted's Bogus Journey"=>61}
+
+    assert_equal expected, tree.min
+    assert_equal expected, tree.max
+    refute_equal not_expected, tree.min
+  end
+
   def test_loads_new_movies_from_file
     tree = BinarySearchTree.new
 
