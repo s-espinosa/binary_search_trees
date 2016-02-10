@@ -26,7 +26,6 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_reports_the_depth_of_the_tree_where_a_score_appears
-    skip
     tree = BinarySearchTree.new
 
     assert_equal 0, tree.insert(61, "Bill & Ted's Excellent Adventure")
@@ -39,7 +38,6 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_reports_the_move_and_score_of_the_highest_scored_movie
-    skip
     tree = BinarySearchTree.new
 
     assert_equal 0, tree.insert(61, "Bill & Ted's Excellent Adventure")
@@ -52,8 +50,7 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal expected, tree.max
   end
 
-  def test_reports_the_move_and_score_of_the_highest_scored_movie
-    skip
+  def test_reports_the_move_and_score_of_the_lowest_scored_movie
     tree = BinarySearchTree.new
 
     assert_equal 0, tree.insert(61, "Bill & Ted's Excellent Adventure")
@@ -67,7 +64,6 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_returns_array_of_all_movies_and_scores_sorted_in_ascending_order
-    skip
     tree = BinarySearchTree.new
 
     assert_equal 0, tree.insert(61, "Bill & Ted's Excellent Adventure")
