@@ -31,19 +31,16 @@ class BinarySearchTree
   end
 
   def depth_of(key)
-    depth = 0
     check_node = @head
 
     until key == check_node.key
       if key < check_node.key
-        depth += 1
         check_node = check_node.left_child
       else
-        depth += 1
         check_node = check_node.right_child
       end
     end
-    depth
+    check_node.depth
   end
 
   def max
