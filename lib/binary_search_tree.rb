@@ -82,40 +82,27 @@ class BinarySearchTree
     files_added
   end
 
-  # def health(level)
-  #   # potential_nodes_at_level = 2 ** level
-  #   # unfiltered_node_colection = []
-  #
-  #   # until unfiltered_node_collection.length == potential_nodes_at_level
-  #   #
-  #   #
-  #   # end
-  #
-  #   ###FIND ALL THE NODES AT A CERTAIN LEVEL###
-  #   # Start at the head
-  #   # If possible, go left a number of times equal to the level
-  #   #
-  #   current_node = @head
-  #   1.upto(level) do |node|
-  #
-  #   end
-  #
-  #   key = 98
-  #   children_plus_one = 7
-  #   children_plus_one_over_all_children = 100
-  #   return_array = []
-  #
-  #   []
-  # end
-  #
-  # def find_all_nodes_at_level(level)
-  #   current_node = @head_node
-  #   array_of_nodes = []
-  #
-  #   array_of_nodes.push(current_node.left_child)
-  #   array_of_nodes.push(current_node.right_child)
-  #
-  #
-  # end
-  #
+  def health(depth)
+    all_nodes = count_children_and_parent(@head, 0)
+    nodes_array = collect_nodes_at_depth(depth)
+    nodes_array.map do |node|
+      node_children = count_children_and_parent(node)
+      percent_of_tree = ((node_children.to_f / all_nodes.to_f)*100).to_i
+      [node.key, node_children, percent_of_tree]
+    end
+  end
+
+  def count_children_and_parent(node, count = 0)
+    count = count_children_and_parent(node.left_child, count) if node.left_child
+    count += 1
+    count = count_children_and_parent(node.right_child, count) if node.right_child
+    count
+  end
+
+  def collect_nodes_at_depth(depth, collection = [], node = @head)
+    collection = collect_nodes_at_depth(depth, collection, node.left_child) if node.left_child
+    collection << node if node.depth == depth
+    collection = collect_nodes_at_depth(depth, collection, node.right_child) if node.right_child
+    collection
+  end
 end
