@@ -81,7 +81,6 @@ class BinarySearchTreeTest < Minitest::Test
   end
 
   def test_loads_new_movies_from_file
-    skip
     tree = BinarySearchTree.new
 
     assert_equal 0, tree.insert(61, "Bill & Ted's Excellent Adventure")
@@ -89,9 +88,9 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal 1, tree.insert(92, "Sharknado 3")
     assert_equal 2, tree.insert(50, "Hannibal Buress: Animal Furnace")
 
-    tree.load('../bin/movies.txt')
+    tree.load('bin/movies.txt')
 
-    assert_equal 26, tree.load('../bin/movies.txt')
+    assert_equal 99, tree.load('bin/movies.txt')
   end
 
   def test_reports_on_health_of_tree
