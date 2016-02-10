@@ -8,32 +8,14 @@ class BinarySearchTree
   end
 
   def insert(key, value, potential_parent_node = @head)
-    if @head == nil
-      @head = Node.new(key, value)
-      0
+    new_node = Node.new(key, value)
+    if @head.nil?
+      @head = new_node
+      return 0
     else
-      insertion_point, depth = find_insertion_point(key, value, potential_parent_node)
-      add_leaf(key, value, insertion_point)
-      depth
+      @head.push(new_node)
     end
-  end
-
-  def find_insertion_point(key, value, potential_parent, depth = 0)
-    if potential_parent.key > key
-      depth += 1
-      check_child(key, value, potential_parent, potential_parent.left_child, depth)
-    else
-      depth += 1
-      check_child(key, value, potential_parent, potential_parent.right_child, depth)
-    end
-  end
-
-  def check_child(key, value, parent, child, depth)
-    if child == nil
-      [parent, depth]
-    else
-      find_insertion_point(key, value, child, depth)
-    end
+    new_node.depth
   end
 
   def add_leaf(key, value, parent)
@@ -95,9 +77,13 @@ class BinarySearchTree
   # end
 
 
-  def load(file)
-
-
+  def load(from_file)
+    File.readlines(from_file).each do |line|
+      line = line.chomp
+      line_array = line.split(", ")
+      insert(line_array[0].to_i, line_array[1])
+    end
+    "here"
   end
   #
   # def health(level)
