@@ -7,7 +7,7 @@ class BinarySearchTree
     @head = nil
   end
 
-  def insert(key, value, potential_parent_node = @head)
+  def insert(key, value)
     new_node = Node.new(key, value)
     if @head.nil?
       @head = new_node
@@ -66,16 +66,17 @@ class BinarySearchTree
   #
   # end
 
-
   def load(from_file)
+    files_added = 0
     File.readlines(from_file).each do |line|
       line = line.chomp
       line_array = line.split(", ")
       insert(line_array[0].to_i, line_array[1])
+      files_added += 1
     end
-    "here"
+    files_added
   end
-  #
+
   # def health(level)
   #   # potential_nodes_at_level = 2 ** level
   #   # unfiltered_node_colection = []
