@@ -192,4 +192,51 @@ class BinarySearchTreeTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_collects_children_of_a_node_with_a_given_score
+    tree = BinarySearchTree.new
+
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
+    tree.insert(99, "Teen Wolf")
+    tree.insert(100, "Labyrinth")
+
+    node_for_test = tree.find_node(58)
+
+    collection_array = tree.collect_children(58, node_for_test)
+    assert_equal 5, collection_array.length
+  end
+
+
+  def test_deletes_a_node_with_a_given_score
+    tree = BinarySearchTree.new
+
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
+    tree.insert(99, "Teen Wolf")
+    tree.insert(100, "Labyrinth")
+
+    tree.delete(58)
+
+    expected_min = {"Bill & Ted's Bogus Journey"=>36}
+    expected_max = {"Labyrinth"=>100}
+
+    assert_equal true, tree.include?(93)
+    assert_equal true, tree.include?(36)
+    assert_equal true, tree.include?(86)
+    assert_equal true, tree.include?(38)
+    assert_equal true, tree.include?(69)
+    assert_equal false, tree.include?(58)
+    assert_equal expected_min, tree.min
+    assert_equal expected_max, tree.max
+  end
 end

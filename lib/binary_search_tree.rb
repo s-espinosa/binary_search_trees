@@ -124,4 +124,56 @@ class BinarySearchTree
     max_depth = depth(max_depth, node.right_child) if node.right_child
     max_depth
   end
+
+  def delete(key)
+    node = find_node(key)
+    children_array = collect_children(key, node)
+    delete_link_to(key)
+    children_array.each do |child|
+      insert(child.key, child.value)
+    end
+  end
+
+  def collect_children(key, node, children_array = [])
+    collect_children(key, node.left_child, children_array) if node.left_child
+    children_array << node if node.key != key
+    collect_children(key, node.right_child, children_array) if node.right_child
+    children_array
+  end
+
+  def find_node(key)
+    check_node = @head
+    until key == check_node.key
+      if key < check_node.key
+        check_node = check_node.left_child
+      else
+        check_node = check_node.right_child
+      end
+    end
+    check_node
+  end
+
+  def delete_link_to(key)
+    return nil if include?(key).nil?
+
+    check_node = @head
+    deleted = false
+    until deleted == true
+      if key < check_node.key
+        if check_node.left_child.key == key
+          check_node.left_child = nil
+          deleted = true
+        else
+          check_node = check_node.left_child
+        end
+      else
+        if check_node.right_child.key == key
+          check_node.right_child = nil
+          deleted = true
+        else
+          check_node = check_node.left_child
+        end
+      end
+    end
+  end
 end
