@@ -153,27 +153,19 @@ class BinarySearchTree
     check_node
   end
 
-  def delete_link_to(key)
+  def delete_link_to(key, check_node = @head)
     return nil if include?(key).nil?
 
-    check_node = @head
-    deleted = false
-    until deleted == true
-      if key < check_node.key
-        if check_node.left_child.key == key
-          check_node.left_child = nil
-          deleted = true
-        else
-          check_node = check_node.left_child
-        end
-      else
-        if check_node.right_child.key == key
-          check_node.right_child = nil
-          deleted = true
-        else
-          check_node = check_node.left_child
-        end
-      end
+    if key == @head.key
+      @head = nil
+    elsif key == check_node.left_child.key
+      check_node.left_child = nil
+    elsif key == check_node.right_child.key
+      check_node.right_child = nil
+    elsif key < check_node.key
+      delete_link_to(key, check_node.left_child)
+    else
+      delete_link_to(key, check_node.right_child)
     end
   end
 end
