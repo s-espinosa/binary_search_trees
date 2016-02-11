@@ -126,6 +126,8 @@ class BinarySearchTree
   end
 
   def delete(key)
+    return nil if include?(key).nil?
+
     node = find_node(key)
     children_array = collect_children(key, node)
     delete_link_to(key)
@@ -154,8 +156,6 @@ class BinarySearchTree
   end
 
   def delete_link_to(key, check_node = @head)
-    return nil if include?(key).nil?
-
     if key == @head.key
       @head = nil
     elsif key == check_node.left_child.key
