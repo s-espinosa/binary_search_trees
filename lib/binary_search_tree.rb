@@ -118,4 +118,10 @@ class BinarySearchTree
     count
   end
 
+  def depth(max_depth = 0, node = @head)
+    max_depth = depth(max_depth, node.left_child) if node.left_child
+    max_depth = node.depth if node.depth > max_depth
+    max_depth = depth(max_depth, node.right_child) if node.right_child
+    max_depth
+  end
 end
